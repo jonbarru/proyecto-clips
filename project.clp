@@ -153,6 +153,7 @@
 
 ;; Regla "puente": Cuando 'detectar-movimientos' termina, pasamos a imprimir
 ;; El salience -10 asegura que se ejecute al final de la fase de cálculo
+
 (defrule finalizar-deteccion
    (declare (salience -10))
    ?j <- (juego (fase calcular-movimientos))
@@ -200,6 +201,9 @@
    (modify ?j (fase esperar-jugada))
 )
 
+; Imprimir tablero al principio, antes del turno humano para ver posibles, y después de cada movimiento para ver el resultado. También al final para mostrar el resultado final.
+
+
 
 ;; =================================================================
 ;; 6. INTERACCIÓN Y VALIDACIÓN DE JUGADA
@@ -246,10 +250,5 @@
    (retract ?jug)
    (modify ?j (fase esperar-jugada))
 )
-   ; pasar a siguiente fase
-   (modify ?j (fase turno-jugador))
-) ; para añadir: otro simbolo para indicar movimientos posibles si es el turno del humano.
-
-; Imprimir tablero al principio, antes del turno humano para ver posibles, y después de cada movimiento para ver el resultado. También al final para mostrar el resultado final.
 
 
