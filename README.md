@@ -6,7 +6,7 @@ Nuestro proceso ha iniciado con la creación de plantillas, reglas para iniciali
 Además, [[POR HACER CON PROXIMOS PASOS]]
 
 
-# IDEAS PARA HACER:
+## IDEAS PARA HACER:
 
 - imprimir tablero al principio, antes del turno humano para ver posibles, y después de cada movimiento para ver el resultado. También al final para mostrar el resultado final.
 - para añadir: otro simbolo para indicar movimientos posibles si es el turno del humano.
