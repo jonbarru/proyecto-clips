@@ -94,10 +94,68 @@
    (assert (partida (turno negra) (fichas-negras 2) (fichas-blancas 2)))
 
    ; Pasamos a fase de juego (turno humano o máquina)
-   (modify ?j (fase turno-jugador))
+   (modify ?j (fase imprimir-tablero))
 
    (printout t "Tablero inicializado. Comienza el juego. Es el turno de las fichas negras." crlf)
    (printout t "--------------------------------------------------------" crlf)
 )
 
+(defrule imprimir-tablero
+   ?j <- (juego (tamano ?t) (fase imprimir-tablero))
+   ?p <- (partida (turno ?turno))
+   =>
+   (printout t crlf "    ")
 
+   ; encabezado columnas
+   (loop-for-count (?c 1 ?t)
+      (if (< ?c 10)
+         then (printout t ?c "  ")
+         else (printout t ?c " ")
+      )
+   )
+   (printout t crlf "   ")
+
+   ; linea superior
+   (loop-for-count (?i 1 (+ (* 3 ?t) 1))
+      (printout t "-")
+   )
+   (printout t crlf)
+
+   ; recorrer filas
+   (loop-for-count (?f 1 ?t)
+      ; numero de fila
+      (if (< ?f 10)
+         then (printout t " " ?f " | ")
+         else (printout t ?f " | ")
+      )
+
+      ; columnas
+      (loop-for-count (?c 1 ?t)
+         (bind ?simbolo ".")
+
+         (do-for-fact ((?cas casilla))
+            (and (= ?cas:fila ?f) (= ?cas:columna ?c))
+            
+            (if (eq ?cas:estado negra) then (bind ?simbolo "N"))
+            (if (eq ?cas:estado blanca) then (bind ?simbolo "B"))
+         )
+
+         (printout t ?simbolo "  ")
+      )
+
+      (printout t "|" crlf)
+   )
+
+   ; linea inferior
+   (printout t "   ")
+   (loop-for-count (?i 1 (+ (* 3 ?t) 1))
+      (printout t "-")
+   )
+   (printout t crlf)
+
+   ; mostrar turno
+   (printout t "Turno: " (upcase ?turno) crlf crlf)
+
+   ; pasar a siguiente fase
+   (modify ?j (fase turno-jugador))
+)
