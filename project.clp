@@ -36,6 +36,12 @@
 
 ;; Coordenadas para explorar las 8 direcciones (N, NE, E, SE, S, SO, O, NO)
 (defglobal ?*dirs* = (create$ -1 -1  -1 0  -1 1   0 -1  0 1   1 -1  1 0  1 1))
+(deftemplate movimiento
+   (slot fila) ; fila del movimiento
+   (slot columna) ; columna del movimiento
+   (slot jugador) ; jugador que realiza el movimiento: negra o blanca
+   (slot fichas-capturadas) ; número de fichas capturadas con este movimiento
+)
 
 
 ;; =================================================================
@@ -240,3 +246,10 @@
    (retract ?jug)
    (modify ?j (fase esperar-jugada))
 )
+   ; pasar a siguiente fase
+   (modify ?j (fase turno-jugador))
+) ; para añadir: otro simbolo para indicar movimientos posibles si es el turno del humano.
+
+; Imprimir tablero al principio, antes del turno humano para ver posibles, y después de cada movimiento para ver el resultado. También al final para mostrar el resultado final.
+
+
