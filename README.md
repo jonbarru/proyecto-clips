@@ -11,6 +11,7 @@ Además, [[POR HACER CON PROXIMOS PASOS]]
 - imprimir tablero al principio, antes del turno humano para ver posibles, y después de cada movimiento para ver el resultado. También al final para mostrar el resultado final.
 - para añadir: otro simbolo para indicar movimientos posibles si es el turno del humano.
 
+- Al ganar/perder: printear en grande (texto caracteres ascii) YOU WIN/LOSE
 
 
 ## PENSAMIENTO MAQUINA
