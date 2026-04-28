@@ -310,6 +310,7 @@
     (retract ?vd)
 )
 
+
 (defrule fin-volteo
     ?j <- (juego (fase voltear-fichas))
     (not (voltear-direccion))
